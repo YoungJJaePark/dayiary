@@ -1270,8 +1270,8 @@ function fn_getMyThings(type)
       </span>
 
       <h4 style="margin-bottom: 15px;">송장번호</h4>
-      <input type="text" id="deliveryNumber" maxlength="12"
-         name="deliveryNumber" placeholder="최대 12자리까지 입력 가능합니다" />
+      <input type="text" id="deliveryNumber" maxlength="13"
+         name="deliveryNumber" placeholder="최대 13자리까지 입력 가능합니다" />
 
       <div id="buttonContainer">
          <input type="button" value="등록" id="submitButton"> <input

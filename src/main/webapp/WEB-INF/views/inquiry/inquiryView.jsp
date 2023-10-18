@@ -118,56 +118,112 @@ $(document).ready(function() {
    
    $("#btnDelete").on("click", function() 
    {   
-      if(confirm("문의글을 삭제하시겠습니까") == true)      //브라우저상 yes눌렀을 시 true!      
-      {
-        $.ajax({
-           type:"POST",
-           url:"/inquiry/inquiryDelete",
-           data:{
-              qnaSeq:<c:out value="${qnaSeq}" />,
-              orderGubun: orderGubun,
-               userId: userId
-           },
-           datatype:"JSON",
-           beforeSend:function(xhr)
-           {
-              xhr.setRequestHeader("AJAX", "true");
-           },
-           success:function(response)
-           {
-              if(response.code == 0)
-              {
-                 alert("문의글이 삭제되었습니다.");
-                 location.href = "/inquiry/inquiryList";
-              }
-              else if(response.code == 400)
-              {
-                 alert("입력 값이 올바르지 않습니다.");
-              }
-              else if(response.code == 403)
-              {
-                 alert("본인 글이 아니므로 삭제할 수 없습니다.");
-              }
-              else if(response.code == 404)
-              {
-                 alert("해당 문의글을 찾을 수 없습니다.");
-                 location.href = "/inquiry/inquiryList";
-              }
-              else if(response.code == -999)
-              {
-                 alert("답변 문의글이 존재하여 삭제할 수 없습니다.");
-              }
-              else
-              {
-                 alert("문의글 삭제시 오류가 발생하였습니다.");
-              }
-           },
-           error:function(xhr, status, error)
-           {
-              icia.common.error(error);
-           }
-        }); 
-      }
+     if(cookieIdd != null && cookieIdd != "") 
+        {
+            if(confirm("문의글을 삭제하시겠습니까") == true)      //브라우저상 yes눌렀을 시 true!      
+            {
+                 $.ajax({
+                    type:"POST",
+                    url:"/inquiry/inquiryDelete",
+                    data:{
+                       qnaSeq:<c:out value="${qnaSeq}" />,
+                       orderGubun: orderGubun,
+                        userId: userId
+                    },
+                    datatype:"JSON",
+                    beforeSend:function(xhr)
+                    {
+                       xhr.setRequestHeader("AJAX", "true");
+                    },
+                    success:function(response)
+                    {
+                       if(response.code == 0)
+                       {
+                          alert("문의글이 삭제되었습니다.");
+                          location.href = "/inquiry/inquiryList";
+                       }
+                       else if(response.code == 400)
+                       {
+                          alert("입력 값이 올바르지 않습니다.");
+                       }
+                       else if(response.code == 403)
+                       {
+                          alert("본인 글이 아니므로 삭제할 수 없습니다.");
+                       }
+                       else if(response.code == 404)
+                       {
+                          alert("해당 문의글을 찾을 수 없습니다.");
+                          location.href = "/inquiry/inquiryList";
+                       }
+                       else if(response.code == -999)
+                       {
+                          alert("답변 문의글이 존재하여 삭제할 수 없습니다.");
+                       }
+                       else
+                       {
+                          alert("문의글 삭제시 오류가 발생하였습니다.");
+                       }
+                    },
+                    error:function(xhr, status, error)
+                    {
+                       icia.common.error(error);
+                    }
+                 }); 
+               }
+        }
+          else if(cookieSellerIdd != null && cookieSellerIdd != "")
+         {
+           if(confirm("문의글 답변을 삭제하시겠습니까") == true)
+            {
+              $.ajax({
+                 type:"POST",
+                 url:"/inquiry/inquiryDelete",
+                 data:{
+                    qnaSeq:<c:out value="${qnaSeq}" />,
+                    orderGubun: orderGubun,
+                     userId: userId
+                 },
+                 datatype:"JSON",
+                 beforeSend:function(xhr)
+                 {
+                    xhr.setRequestHeader("AJAX", "true");
+                 },
+                 success:function(response)
+                 {
+                    if(response.code == 0)
+                    {
+                       alert("문의글 답변이 삭제되었습니다.");
+                       location.href = "/inquiry/inquiryList";
+                    }
+                    else if(response.code == 400)
+                    {
+                       alert("입력 값이 올바르지 않습니다.");
+                    }
+                    else if(response.code == 403)
+                    {
+                       alert("본인 글이 아니므로 삭제할 수 없습니다.");
+                    }
+                    else if(response.code == 404)
+                    {
+                       alert("해당 문의글을 찾을 수 없습니다.");
+                       location.href = "/inquiry/inquiryList";
+                    }
+                    else if(response.code == -999)
+                    {
+                       alert("답변 문의글이 존재하여 삭제할 수 없습니다.");
+                    }
+                    else
+                    {
+                       alert("문의글 삭제시 오류가 발생하였습니다.");
+                    }
+                 },
+                 error:function(xhr, status, error)
+                 {
+                    icia.common.error(error);
+                 }
+              }); 
+            }
+         }
    });
    
 });
